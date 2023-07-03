@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Kanalisering</title>
+        <link rel="stylesheet" href="viewer.css">
+        <script type = "text/javascript">
+            let i = localStorage.getItem("i") ? Number(localStorage.getItem("i")) : 0;
+            const koordinat = [[373866,7181599], [237411,6685456], [267411,6985456]]
+            var link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinat[i][0]},${koordinat[i][1]},18`;
+            const Kart = document.getElementById("kart");
+            
+            Kart.src = link
+            function clear() {
+                console.log("Cleared")
+                localStorage.clear();
+                
+            }
+            function Open() {
+                
+                ++i;
+                localStorage.setItem("i", i)
+                console.log(i)
+            
+                link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinat[i][0]},${koordinat[i][1]},18`;
+                location.reload()
+                
+            }
+            
+            
+        </script>
+    </head>
+    <body>
+        <div class=upper>
+            <button onclick = "Open();">{X:}</button>
+            <button onclick = "clear();">Clear local storage</button>
+        </div>
+        <div class=lower>
+            <iframe id="kart" width="100%" height="100%" bottom="0"></iframe>
+        </div>
+    </body>
+</html>

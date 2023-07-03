@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jul  3 12:34:34 2023
+
+@author: andryg
+"""
+
+div.upper, div.lower {
+    position: absolute;
+    left: 0;
+    right: 0;
+    outline: solid 10px #ccc;
+    margin: 5px
+}
+div.upper {
+    height: 100px;
+    top: 0;
+}
+div.lower {
+    bottom: 0;
+    height: 700px;
+}
