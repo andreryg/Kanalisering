@@ -20,3 +20,14 @@ div.lower {
     bottom: 0;
     height: 820px;
 }
+div.first{
+     position:absolute;
+     border:1px solid red;
+}
+div.second, div.third{
+    text-align:center;
+    width:100%;
+    height:30px;
+	position: relative;
+	top:40px;
+}

@@ -10,5 +10,5 @@ from lesKryss import getData
 
 
 #index = open("viewer.html").read().format(X="test")
-#getData()
+getData()
 webbrowser.open("viewer.html")
