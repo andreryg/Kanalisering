@@ -8,6 +8,7 @@ Created on Mon Jul  3 09:33:07 2023
 import nvdbapiv3
 import pandas as pd
 import numpy as np
+import json
 
 def getData():
     vegkryss = nvdbapiv3.nvdbFagdata(37)
@@ -17,9 +18,23 @@ def getData():
 
     test = [i for i in vegkryssDF['geometri'].apply(lambda x: x.strip("POINTZ()")[3:].split(" "))]
     
-    fil = open("koordinater.txt", "w")
+    """
+    koordinater = []
     for j in test:
         j.pop()
-        fil.write(str(list(map(float, j)))+"\n")
+        koordinater.append((list(map(float, j))))
+    a = {}
+    a.update({"koordinater":koordinater})
+    with open("koordinater.json", 'w') as fp:
+        json.dump(a, fp, sort_keys=True, indent=4)
+    
+    
+    """
+    fil = open("koordinater.js", "w")
+    fil.write("const koordinater = [")
+    for j in test:
+        j.pop()
+        fil.write(str(list(map(float, j)))+",")
+    fil.write("];")
 
 getData()
