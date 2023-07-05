@@ -23,6 +23,8 @@ div.lower {
 div.first{
      position:absolute;
      border:1px solid red;
+     text-align:center;
+     width:100%
 }
 div.second, div.third{
     text-align:center;

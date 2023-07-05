@@ -7,7 +7,8 @@
     <body>
         <div class=upper>
             <div class=first>
-                <button onclick = "Open();">{X:}</button>
+                <button onclick = "Open();">Neste</button>
+                <button onclick = "Save()">Lagre</button>
                 <button onclick = "ClearStorage();">Clear local storage</button>
             </div>
             <div class=second>
@@ -34,26 +35,43 @@
         <script src="koordinater.js"></script>
         <script type = "text/javascript">            
             let i = localStorage.getItem("i") ? Number(localStorage.getItem("i")) : 0;
-            var link = `https://vegkart.test.atlas.vegvesen.no/#kartlag:nib/@${koordinater[i][0]},${koordinater[i][1]},16/valgt:${koordinater[i][2]}:37`;
+            var link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinater[i][0]},${koordinater[i][1]},16/hva:!(id~49)~/valgt:${koordinater[i][2]}:37`;
             const Kart = document.getElementById("Kart");
             
             Kart.src = link
+            
+            k2 = document.getElementById("kanalisering2")
+            k1 = document.getElementById("kanalisering1")
+            console.log(kanalisering)
+            
 
             function ClearStorage() {
                 console.log("Cleared")
                 window.localStorage.clear();
                 location.reload()
-                
             }
             function Open() {
+                var kanalisering = localStorage.getItem("kanalisering") ? JSON.parse(localStorage.getItem("kanalisering")) : []
+                kanalisering.push([koordinater[i][2], k2.value, k1.value])
+                localStorage.setItem("kanalisering", JSON.stringify(kanalisering))
+                console.log(kanalisering)
                 
                 ++i;
                 localStorage.setItem("i", i)
                 console.log(i)
             
-                link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinater[i][0]},${koordinater[i][1]},16/valgt:${koordinater[i][2]}:37`;
+                link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinater[i][0]},${koordinater[i][1]},16/hva:!(id~49)~/valgt:${koordinater[i][2]}:37`;
                 Kart.src = link
                 location.reload()
+            }
+            function Save() {
+                var kanalisering = localStorage.getItem("kanalisering") ? JSON.parse(localStorage.getItem("kanalisering")) : []
+                const link = document.createElement("a")
+                const file = new Blob([JSON.stringify(kanalisering)], { type: 'text/plain' })
+                link.href = URL.createObjectURL(file)
+                link.download = "kanalisering.txt"
+                link.click()
+                URL.revokeObjectURL(link.href)
             }
         </script>
     </body>
