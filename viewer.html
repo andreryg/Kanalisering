@@ -22,7 +22,7 @@
         <script src="koordinater.js"></script>
         <script type = "text/javascript">            
             let i = localStorage.getItem("i") ? Number(localStorage.getItem("i")) : 0;
-            var link = `https://vegkart.atlas.vegvesen.no/#kartlag:geodata/@${koordinater[i][0]},${koordinater[i][1]},18/hva:!(id~49)~/valgt:${koordinater[i][2]}:37~/vegnett:metrering~+(detaljniva~!VT)~`;
+            var link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinater[i][0]},${koordinater[i][1]},16/hva:!(id~49)~/valgt:${koordinater[i][2]}:37~/vegnett:metrering~+(detaljniva~!VT)~`;
             const Kart = document.getElementById("Kart");
             
             Kart.src = link
@@ -47,7 +47,7 @@
                     localStorage.setItem("i", i)
                     console.log(i)
                 
-                    link = `https://vegkart.atlas.vegvesen.no/#kartlag:geodata/@${koordinater[i][0]},${koordinater[i][1]},18/hva:!(id~49)~/valgt:${koordinater[i][2]}:37~/vegnett:metrering~+(detaljniva~!VT)~`;
+                    link = `https://vegkart.atlas.vegvesen.no/#kartlag:nib/@${koordinater[i][0]},${koordinater[i][1]},16/hva:!(id~49)~/valgt:${koordinater[i][2]}:37~/vegnett:metrering~+(detaljniva~!VT)~`;
                     Kart.src = link
                     location.reload()
                     
