@@ -13,7 +13,7 @@
             </div>
             <div class=second>
                 <label for="armer">Armer i rundkjøring:</label>
-                <input type="text" name="armerverdi" id="armverdi">
+                <input type="number" name="armerverdi" id="armverdi" min="1" max="8" onkeyup="if(parseInt(this.value)>8){this.value = 8;} else if(parseInt(this.value)<1){this.value = 1;}" autofocus>
             </div>
         </div>
         <div class=lower>
@@ -37,19 +37,29 @@
                 location.reload()
             }
             function Open() {
-                var armer = localStorage.getItem("armer") ? JSON.parse(localStorage.getItem("armer")) : []
-                armer.push([koordinater[i][2], k2.value])
-                localStorage.setItem("armer", JSON.stringify(armer))
-                console.log(armer)
+                if (k2.value != "") {
+                    var armer = localStorage.getItem("armer") ? JSON.parse(localStorage.getItem("armer")) : []
+                    armer.push([koordinater[i][2], k2.value])
+                    localStorage.setItem("armer", JSON.stringify(armer))
+                    console.log(armer)
+                    
+                    ++i;
+                    localStorage.setItem("i", i)
+                    console.log(i)
                 
-                ++i;
-                localStorage.setItem("i", i)
-                console.log(i)
-            
-                link = `https://vegkart.atlas.vegvesen.no/#kartlag:geodata/@${koordinater[i][0]},${koordinater[i][1]},18/hva:!(id~49)~/valgt:${koordinater[i][2]}:37~/vegnett:metrering~+(detaljniva~!VT)~`;
-                Kart.src = link
-                location.reload()
+                    link = `https://vegkart.atlas.vegvesen.no/#kartlag:geodata/@${koordinater[i][0]},${koordinater[i][1]},18/hva:!(id~49)~/valgt:${koordinater[i][2]}:37~/vegnett:metrering~+(detaljniva~!VT)~`;
+                    Kart.src = link
+                    location.reload()
+                    
+                }
             }
+            var input = document.getElementById("armverdi");
+            input.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    Open();
+                }
+            })
             function Save() {
                 var armer = localStorage.getItem("armer") ? JSON.parse(localStorage.getItem("armer")) : []
                 const link = document.createElement("a")
@@ -59,6 +69,11 @@
                 link.click()
                 URL.revokeObjectURL(link.href)
             }
+            window.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    document.getElementById("armverdi").focus();
+                }
+            })
         </script>
     </body>
 </html>

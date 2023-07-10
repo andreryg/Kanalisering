@@ -48,7 +48,7 @@ def createDict(i):
             {
             "typeId": 1789,
             "verdi": [
-                data_list[i][1]
+                int(data_list[i][1])
                 ],
             "operasjon": "oppdater"
             },
