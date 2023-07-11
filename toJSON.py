@@ -26,7 +26,7 @@ for i in temp_data_list:
     data_list.append(i)
 
 vegkryss = nvdbapiv3.nvdbFagdata(37)
-vegkryss.filter({'egenskap': '11479="Sommeroppdatering 2023" AND 1114=3136 AND 12681!="temp"'})
+vegkryss.filter({'egenskap': '11479="Sommeroppdatering 2023" AND 1114=3136 AND 12681!="VD5"'})
 vegkryssDF = pd.DataFrame(vegkryss.to_records())
 #print(vegkryssDF.columns.values.tolist())
 
@@ -55,7 +55,14 @@ def createDict(i):
             {
             "typeId": 12681,
             "verdi": [
-                "temp"
+                "VD5"
+                ],
+            "operasjon": "oppdater"
+            },
+            {
+            "typeId": 12680,
+            "verdi": [
+                datetime.datetime.today().strftime('%Y-%m-%d')
                 ],
             "operasjon": "oppdater"
             }

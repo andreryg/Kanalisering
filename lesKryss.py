@@ -16,7 +16,7 @@ def getData():
     """
     vegkryss = nvdbapiv3.nvdbFagdata(37) #37 = vegkryss
     #Filtrerer dataen basert på prosjektreferanse, ikke plankryss og manglende verdier for kanalisering.
-    vegkryss.filter({'egenskap': '11479="Sommeroppdatering 2023" AND 1114=3136 AND 12681!="temp"'})
+    vegkryss.filter({'egenskap': '11479="Sommeroppdatering 2023" AND 1114=3136 AND 12681!="VD5"'})
     vegkryssDF = pd.DataFrame(vegkryss.to_records())
     #print(vegkryssDF.columns.values.tolist())
     
