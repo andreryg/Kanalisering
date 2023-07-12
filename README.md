@@ -1,5 +1,6 @@
 # Kanalisering
 App for å se og oppdatere egenskaper for vegkryss i NVDB
+Proof of concept
 
 **Egenskaper**
 
